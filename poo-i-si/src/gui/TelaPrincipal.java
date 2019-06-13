@@ -3,6 +3,8 @@ package gui;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import model.ModeloTablePessoas;
+import model.Pessoa;
 
 public class TelaPrincipal extends JFrame{
 
@@ -26,12 +29,21 @@ public class TelaPrincipal extends JFrame{
 	private JButton botaoSalvar;
 	private JTable tblPessoas;
 	private JScrollPane scrlPessoas;
+	private List<Pessoa> listaDePessoas;
 	
 	private final int ALTURA_COMPONENTE = 30;
 	private final int LARGURA_COMPONENTE_TEXTO = 300;
 	private final int COORDENADA_MAIS_A_ESQUERDA = 30;
 	
 	public TelaPrincipal() {
+		listaDePessoas = new ArrayList<Pessoa>();
+		Pessoa p1 = new Pessoa("Helena", "Faria");
+		listaDePessoas.add(p1);
+		Pessoa p2 = new Pessoa("Vitor", "Faria");
+		listaDePessoas.add(p2);
+		Pessoa p3 = new Pessoa("Kenyo", "Faria");
+		listaDePessoas.add(p3);
+		//listaDePessoas.add(new Pessoa("Adriana", "Faria"));
 		inicializaTela();
 	}
 
@@ -83,7 +95,7 @@ public class TelaPrincipal extends JFrame{
 		botaoSalvar.setBounds(25, 60, 100, ALTURA_COMPONENTE);
 		containerPrincipal.add(botaoSalvar);
 		
-		ModeloTablePessoas modeloTabela = new ModeloTablePessoas();
+		ModeloTablePessoas modeloTabela = new ModeloTablePessoas(listaDePessoas);
 		tblPessoas = new JTable(modeloTabela);
 		scrlPessoas = new JScrollPane(tblPessoas);
 		scrlPessoas.setBounds(COORDENADA_MAIS_A_ESQUERDA, 100, 600, 200);
